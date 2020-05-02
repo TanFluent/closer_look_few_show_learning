@@ -100,9 +100,9 @@ if __name__=='__main__':
                 params.stop_epoch = 600 #default
 
     if params.method in ['baseline', 'baseline++'] :
-        base_datamgr    = SimpleDataManager(image_size, batch_size = 16)
+        base_datamgr    = SimpleDataManager(image_size, batch_size=params.train_batch_size)
         base_loader     = base_datamgr.get_data_loader( base_file , aug = params.train_aug )
-        val_datamgr     = SimpleDataManager(image_size, batch_size = 64)
+        val_datamgr     = SimpleDataManager(image_size, batch_size=64)
         val_loader      = val_datamgr.get_data_loader( val_file, aug = False)
         
         if params.dataset == 'omniglot':
