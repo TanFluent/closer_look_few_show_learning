@@ -48,53 +48,56 @@ def train(base_loader, val_loader, model, optimization, start_epoch, stop_epoch,
 
     return model
 
+
 if __name__=='__main__':
     np.random.seed(10)
     params = parse_args('train')
 
-
+    # == Get base/val sets ==
     if params.dataset == 'cross':
         base_file = configs.data_dir['miniImagenet'] + 'all.json' 
-        val_file   = configs.data_dir['CUB'] + 'val.json' 
+        val_file = configs.data_dir['CUB'] + 'val.json'
     elif params.dataset == 'cross_char':
         base_file = configs.data_dir['omniglot'] + 'noLatin.json' 
-        val_file   = configs.data_dir['emnist'] + 'val.json' 
+        val_file = configs.data_dir['emnist'] + 'val.json'
     else:
         base_file = configs.data_dir[params.dataset] + 'base.json' 
-        val_file   = configs.data_dir[params.dataset] + 'val.json' 
-         
-    if 'Conv' in params.model:
+        val_file = configs.data_dir[params.dataset] + 'val.json'
+
+    # == Get Input size for training model ==
+    if 'Conv' in params.model:  # for Conv*
         if params.dataset in ['omniglot', 'cross_char']:
             image_size = 28
         else:
             image_size = 84
-    else:
+    else:  # for resNet
         image_size = 224
 
     if params.dataset in ['omniglot', 'cross_char']:
         assert params.model == 'Conv4' and not params.train_aug ,'omniglot only support Conv4 without augmentation'
         params.model = 'Conv4S'
 
+    # == Init training optimization ==
     optimization = 'Adam'
 
+    # == Get training Epoch ==
     if params.stop_epoch == -1: 
-        if params.method in ['baseline', 'baseline++'] :
+        if params.method in ['baseline', 'baseline++']:  # training stage
             if params.dataset in ['omniglot', 'cross_char']:
                 params.stop_epoch = 5
             elif params.dataset in ['CUB']:
-                params.stop_epoch = 200 # This is different as stated in the open-review paper. However, using 400 epoch in baseline actually lead to over-fitting
+                params.stop_epoch = 200  # This is different as stated in the open-review paper. However, using 400 epoch in baseline actually lead to over-fitting
             elif params.dataset in ['miniImagenet', 'cross']:
                 params.stop_epoch = 400
             else:
-                params.stop_epoch = 400 #default
-        else: #meta-learning methods
+                params.stop_epoch = 400  # default
+        else:  # meta-learning methods
             if params.n_shot == 1:
                 params.stop_epoch = 600
             elif params.n_shot == 5:
                 params.stop_epoch = 400
             else:
                 params.stop_epoch = 600 #default
-     
 
     if params.method in ['baseline', 'baseline++'] :
         base_datamgr    = SimpleDataManager(image_size, batch_size = 16)
