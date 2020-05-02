@@ -26,9 +26,9 @@ def parse_args(script):
 
     if script == 'train':
         parser.add_argument('--num_classes' , default=50030, type=int, help='total number of classes in softmax, only used in baseline') #make it larger than the maximum label value in base class
-        parser.add_argument('--save_freq'   , default=50, type=int, help='Save frequency')
+        parser.add_argument('--save_freq'   , default=10, type=int, help='Save frequency')
         parser.add_argument('--start_epoch' , default=0, type=int,help ='Starting epoch')
-        parser.add_argument('--stop_epoch'  , default=400, type=int, help ='Stopping epoch') #for meta-learning methods, each epoch contains 100 episodes. The default epoch number is dataset dependent. See train.py
+        parser.add_argument('--stop_epoch'  , default=1000, type=int, help ='Stopping epoch') #for meta-learning methods, each epoch contains 100 episodes. The default epoch number is dataset dependent. See train.py
         parser.add_argument('--resume'      , action='store_true', help='continue from previous trained model with largest epoch')
         parser.add_argument('--warmup'      , action='store_true', help='continue from baseline, neglected if resume is true') #never used in the paper
         parser.add_argument('--train_batch_size', default=16, type=int, help='batch-size for training')

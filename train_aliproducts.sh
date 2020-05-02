@@ -3,4 +3,5 @@
 # baseline/baseline++
 
 # meta-learning
-python ./train.py --dataset ali_products --model Conv4 --method protonet --train_aug
+#python ./train.py --dataset ali_products --model Conv4 --method protonet --train_n_way 5 --n_shot 5 --test_n_way 5 --train_aug
+python ./train.py --dataset ali_products --model ResNet50 --method baseline++ --train_aug
