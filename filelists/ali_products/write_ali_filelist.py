@@ -19,7 +19,9 @@ dataset_list = ['base', 'val', 'novel']
 folder_list = [f for f in listdir(data_path) if isdir(join(data_path, f))]
 folder_list.sort()
 
-print('Top10 class: %s\n' % ' | '.join(folder_list[10]))
+print('Top10 class:\n')
+for idx, i in enumerate(folder_list[0:10]):
+    print('#%d - %s' % (idx, i))
 
 label_dict = dict(zip(folder_list, range(0,len(folder_list))))
 
