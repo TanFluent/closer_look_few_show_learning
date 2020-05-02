@@ -25,7 +25,7 @@ def parse_args(script):
     parser.add_argument('--train_aug'   , action='store_true',  help='perform data augmentation or not during training ') #still required for save_features.py and test.py to find the model path correctly
 
     if script == 'train':
-        parser.add_argument('--num_classes' , default=50000, type=int, help='total number of classes in softmax, only used in baseline') #make it larger than the maximum label value in base class
+        parser.add_argument('--num_classes' , default=50030, type=int, help='total number of classes in softmax, only used in baseline') #make it larger than the maximum label value in base class
         parser.add_argument('--save_freq'   , default=50, type=int, help='Save frequency')
         parser.add_argument('--start_epoch' , default=0, type=int,help ='Starting epoch')
         parser.add_argument('--stop_epoch'  , default=400, type=int, help ='Stopping epoch') #for meta-learning methods, each epoch contains 100 episodes. The default epoch number is dataset dependent. See train.py
