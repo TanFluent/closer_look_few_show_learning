@@ -9,10 +9,10 @@ import pdb
 cwd = os.getcwd()
 
 path_to_aliproducts_dataset = '/data/datasets/cv/aliproducts'
-data_path = join(path_to_aliproducts_dataset, 'train')
+data_path = join(path_to_aliproducts_dataset, 'val')
 savedir = './'
 #dataset_list = ['base', 'val', 'novel']
-dataset_list = ['base']
+dataset_list = ['val']
 
 #if not os.path.exists(savedir):
 #    os.makedirs(savedir)

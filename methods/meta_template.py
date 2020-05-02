@@ -57,7 +57,7 @@ class MetaTemplate(nn.Module):
         print_freq = 10
 
         avg_loss=0
-        pdb.set_trace()
+
         for i, (x,_ ) in enumerate(train_loader):
             self.n_query = x.size(1) - self.n_support           
             if self.change_way:
