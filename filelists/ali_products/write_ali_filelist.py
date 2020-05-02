@@ -4,18 +4,24 @@ from os.path import isfile, isdir, join
 import os
 import json
 import random
+import pdb
 
-cwd = os.getcwd() 
-data_path = join(cwd,'CUB_200_2011/images')
+cwd = os.getcwd()
+
+path_to_aliproducts_dataset = '/data/datasets/cv/aliproducts'
+data_path = join(path_to_aliproducts_dataset, 'train')
 savedir = './'
-dataset_list = ['base','val','novel']
+dataset_list = ['base', 'val', 'novel']
 
 #if not os.path.exists(savedir):
 #    os.makedirs(savedir)
 
 folder_list = [f for f in listdir(data_path) if isdir(join(data_path, f))]
 folder_list.sort()
-label_dict = dict(zip(folder_list,range(0,len(folder_list))))
+
+print('Top10 class: %s\n' % ' | '.join(folder_list[10]))
+
+label_dict = dict(zip(folder_list, range(0,len(folder_list))))
 
 classfile_list_all = []
 
@@ -26,6 +32,8 @@ for i, folder in enumerate(folder_list):
 
 
 for dataset in dataset_list:
+    print('#saving [%s] ... ...' % dataset)
+
     file_list = []
     label_list = []
     for i, classfile_list in enumerate(classfile_list_all):
