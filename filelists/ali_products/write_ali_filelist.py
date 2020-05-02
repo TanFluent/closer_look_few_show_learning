@@ -32,7 +32,7 @@ for i, folder in enumerate(folder_list):
     classfile_list_all.append( [ join(folder_path, cf) for cf in listdir(folder_path) if (isfile(join(folder_path,cf)) and cf[0] != '.')])
     random.shuffle(classfile_list_all[i])
 
-pdb.set_trace()
+# pdb.set_trace()
 
 for dataset in dataset_list:
     print('#saving [%s] ... ...' % dataset)

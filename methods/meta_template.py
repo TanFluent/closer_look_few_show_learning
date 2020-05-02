@@ -7,6 +7,8 @@ import torch.nn.functional as F
 import utils
 from abc import abstractmethod
 
+import pdb
+
 class MetaTemplate(nn.Module):
     def __init__(self, model_func, n_way, n_support, change_way = True):
         super(MetaTemplate, self).__init__()
@@ -55,6 +57,7 @@ class MetaTemplate(nn.Module):
         print_freq = 10
 
         avg_loss=0
+        pdb.set_trace()
         for i, (x,_ ) in enumerate(train_loader):
             self.n_query = x.size(1) - self.n_support           
             if self.change_way:
