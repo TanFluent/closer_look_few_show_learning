@@ -88,7 +88,7 @@ if __name__ == '__main__':
     else:
         outfile = os.path.join( checkpoint_dir.replace("checkpoints","features"), split + ".hdf5") 
 
-    datamgr         = SimpleDataManager(image_size, batch_size = 64)
+    datamgr         = SimpleDataManager(image_size, batch_size = 32)
     data_loader      = datamgr.get_data_loader(loadfile, aug = False)
 
     if params.method in ['relationnet', 'relationnet_softmax']:
