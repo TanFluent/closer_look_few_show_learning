@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
     iter_num = 600
 
-    few_shot_params = dict(n_way = params.test_n_way , n_support = params.n_shot) 
+    few_shot_params = dict(n_way = params.test_n_way , n_support = params.n_shot)
 
     if params.dataset in ['omniglot', 'cross_char']:
         assert params.model == 'Conv4' and not params.train_aug ,'omniglot only support Conv4 without augmentation'
@@ -148,8 +148,8 @@ if __name__ == '__main__':
         cl_data_file = feat_loader.init_loader(novel_file)
 
         for i in range(iter_num):
-            #acc = feature_evaluation(cl_data_file, model, n_query = 15, adaptation = params.adaptation, **few_shot_params)
-            acc = feature_evaluation(cl_data_file, model, n_support=1, n_query=15, adaptation=params.adaptation, **few_shot_params)
+            acc = feature_evaluation(cl_data_file, model, n_query=15, adaptation=params.adaptation, **few_shot_params)
+            #acc = feature_evaluation(cl_data_file, model, n_support=1, n_query=15, adaptation=params.adaptation, **few_shot_params)
             acc_all.append(acc)
 
         acc_all  = np.asarray(acc_all)
